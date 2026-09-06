@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    static  void main(){
+    static void main() {
         Employee developer = new Developer();
         developer.setName("Joao");
         developer.setEmail("joao@mail.com");
@@ -25,7 +25,7 @@ public class Main {
 
         double totalPayment = 0;
 
-        for(Employee employee: employees){
+        for (Employee employee : employees) {
             System.out.println("-------------------------");
             employee.detail();
             totalPayment += employee.getSalary();

@@ -1,4 +1,4 @@
-package EX_1;
+package EX_4;
 
 public class Person {
     String name;
