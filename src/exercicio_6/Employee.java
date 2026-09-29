@@ -35,4 +35,9 @@ public class Employee {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public double finalSalary(){
+        double baseSalary = this.getSalary();
+        return baseSalary + this.getRole().bonus(baseSalary);
+    }
 }
