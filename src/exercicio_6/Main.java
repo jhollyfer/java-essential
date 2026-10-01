@@ -8,7 +8,7 @@ public class Main {
     private static final Map<Role, Integer> quantityPerPage = new HashMap<Role, Integer>();
 
     static void main() {
-        int option;
+        int option = 0;
 
         do {
             showMenu();
@@ -16,27 +16,16 @@ public class Main {
             option = input.nextInt();
 
             switch (option) {
-                case 1:
-                    createEmployee();
-                    break;
-                case 2:
-                    findManyEmployee();
-                    break;
-                case 3:
-                    showFinalSalary();
-                    break;
-                case 4:
-                    showHighestSalary();
-                    break;
-                case 5:
-                    showQuantityPerPage();
-                    break;
-                case 6:
-                    getByName();
-                    break;
-                default:
-                    System.out.println("Invalid option.");
+                case 1 -> createEmployee();
+                case 2 -> findManyEmployee();
+                case 3 -> showFinalSalary();
+                case 4 -> showHighestSalary();
+                case 5 -> showQuantityPerPage();
+                case 6 -> getByName();
+                case 7 -> System.out.println("Finished...");
+                default -> System.out.println("Invalid option.");
             }
+
         } while (option != 7);
     }
 
@@ -61,7 +50,7 @@ public class Main {
         double salary = input.nextDouble();
 
         System.out.print("Insert role: ");
-        Role role = Role.valueOf(input.next());
+        Role role = Role.valueOf(input.next().toUpperCase());
 
         employees.add(new Employee(name, salary, role));
 
@@ -69,15 +58,13 @@ public class Main {
 
     private static void findManyEmployee() {
 
-        if (employees.isEmpty())
-            System.out.println("Empty result");
+        if (employees.isEmpty()) System.out.println("Empty result");
 
 
-        if (!employees.isEmpty())
-            for (Employee employee : employees) {
-                System.out.println("Name: " + employee.getName());
-                System.out.println("Role: " + employee.getRole().getDescription());
-            }
+        if (!employees.isEmpty()) for (Employee employee : employees) {
+            System.out.println("Name: " + employee.getName());
+            System.out.println("Role: " + employee.getRole().getDescription());
+        }
     }
 
     private static void showFinalSalary() {
@@ -91,10 +78,8 @@ public class Main {
         Employee highest = null;
 
         for (Employee employee : employees) {
-            if (highest == null)
-                highest = employee;
-            else if (employee.finalSalary() > highest.finalSalary())
-                highest = employee;
+            if (highest == null) highest = employee;
+            else if (employee.finalSalary() > highest.finalSalary()) highest = employee;
 
         }
 
@@ -109,7 +94,7 @@ public class Main {
     private static void showQuantityPerPage() {
         for (Employee employee : employees) {
             int quantity = quantityPerPage.getOrDefault(employee.getRole(), 0);
-            quantityPerPage.put(employee.getRole(), quantity);
+            quantityPerPage.put(employee.getRole(), quantity + 1);
         }
 
         for (Map.Entry<Role, Integer> roleEntry : quantityPerPage.entrySet())
